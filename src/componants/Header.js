@@ -1,6 +1,18 @@
 import React from "react";
+import {getAuth, signOut} from "firebase/auth";
 
-function Header() {
+function Header({setLoggedIn, setUserInformation}) {
+    function logout() {
+        const auth = getAuth();
+        signOut(auth)
+            .then(() => {
+                setUserInformation({});
+                setLoggedIn(false);
+            })
+            .catch((error) => {
+                console.warn(error);
+            });
+    }
     return (
         <header>
             <nav> 
