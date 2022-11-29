@@ -69,7 +69,7 @@ function App() {
   }, [appInitialized]);
   return (
     <div className='App'>
-      <Header/>
+      {/* <Header/> */}
       <RouterProvider router={router} />
     </div>
   );

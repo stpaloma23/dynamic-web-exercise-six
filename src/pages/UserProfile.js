@@ -1,6 +1,7 @@
 import React from 'react';
 import {useNavigate} from "react-router-dom";
 import {useEffect} from 'react';
+import Header from '../componants/Header';
 
 function UserProfilePage({isLoading, isLoggedIn, userInformation}) {
     const navigate = useNavigate();
@@ -10,6 +11,7 @@ function UserProfilePage({isLoading, isLoggedIn, userInformation}) {
     }, [isLoading, isLoggedIn]);
     return (
         <div className='page-wrapper'>
+            <Header/>
             <h1>User Profile Page</h1>
             <p>
                 <strong>User Name:</strong>

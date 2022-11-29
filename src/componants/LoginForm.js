@@ -1,8 +1,8 @@
 import React from 'react';
 
-function LoginForm() {
+function LoginForm({loginUser}) {
     return (
-        <form className='form-element'>
+        <form className='form-element' onSubmit={(e) =>loginUser(e)}>
             <label for="userName">User Name</label>
             <input type="text" name="userName"/>
 

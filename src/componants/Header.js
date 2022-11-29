@@ -1,7 +1,8 @@
 import React from "react";
 import {getAuth, signOut} from "firebase/auth";
 
-function Header({setLoggedIn, setUserInformation}) {
+// look at header with logout stuff 
+function Header({isLoggedIn, setLoggedIn, setUserInformation}) {
     function logout() {
         const auth = getAuth();
         signOut(auth)
@@ -25,6 +26,7 @@ function Header({setLoggedIn, setUserInformation}) {
                 <a href="/create">
                     <p>Create User</p>
                 </a>
+                {isLoggedIn && <p onClick={()=>logout()}>Log Out</p>}
             </nav> 
         </header> 
     )

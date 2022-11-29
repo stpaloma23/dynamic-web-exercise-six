@@ -2,7 +2,7 @@ import React, { useCallback, useState, useEffect } from 'react';
 import CreateUserForm from '../componants/CreateUserForm';
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import {useNavigate} from "react-router-dom";
-
+import Header from '../componants/Header';
 
 function CreateUserProfile({isLoggedIn, setIsLoggedIn, setUserInformation}) {
     const [error, setErrors] = useState();
@@ -11,7 +11,6 @@ function CreateUserProfile({isLoggedIn, setIsLoggedIn, setUserInformation}) {
     useEffect(() => {
         if(isLoggedIn) navigate('/')
     }, [isLoggedIn]);
-    
     const signUpUser = useCallback(
         (e) => {
             e.preventDefault();
@@ -44,6 +43,7 @@ function CreateUserProfile({isLoggedIn, setIsLoggedIn, setUserInformation}) {
 
     return (
         <div className='page-wrapper'>
+            <Header/>
             <h1>Create User</h1>
             <CreateUserForm signUpUser={signUpUser}/>
             <p>{error}</p>
