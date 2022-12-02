@@ -3,15 +3,19 @@ import {useNavigate} from "react-router-dom";
 import {useEffect} from 'react';
 import Header from '../componants/Header';
 
-function UserProfilePage({isLoading, isLoggedIn, userInformation}) {
+function UserProfilePage({isLoading, isLoggedIn, userInformation, setUserInformation}) {
     const navigate = useNavigate();
     // if youre logged in go to the user profile 
     useEffect(() => {
         if(isLoggedIn && !isLoading) navigate('/login');
-    }, [isLoading, isLoggedIn]);
+    }, [isLoading, isLoggedIn, navigate]);
     return (
         <div className='page-wrapper'>
-            <Header/>
+            <Header
+                isLoggedIn={isLoggedIn}
+                setLoggedIn={isLoggedIn}
+                setUserInformation={setUserInformation}
+            />
             <h1>User Profile Page</h1>
             <p>
                 <strong>User Name:</strong>

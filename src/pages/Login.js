@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import LoginForm from '../componants/LoginForm';
 import Header from '../componants/Header';
@@ -6,6 +6,7 @@ import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 
 function LoginPage({ isLoggedIn, setIsLoggedIn, setUserInformation }) {
     const navigate = useNavigate();
+    const [errors, setErrors] = useState();
     // if youre logged in go to the user profile 
     useEffect(() => {
         if(isLoggedIn) navigate('/')
@@ -15,6 +16,7 @@ function LoginPage({ isLoggedIn, setIsLoggedIn, setUserInformation }) {
         e.preventDefault();
         const email = e.currentTarget.email.value;
         const password = e.currentTarget.password.value;
+
         const auth = getAuth();
         signInWithEmailAndPassword(auth, email, password) 
             .then((userCredential) => {
@@ -23,17 +25,20 @@ function LoginPage({ isLoggedIn, setIsLoggedIn, setUserInformation }) {
                 setUserInformation({
                     email: user.email,
                     displayName: user.displayName,
-                    uid:user.uid,
-                    accessToken: user.accessToken
+                    uid: user.uid,
+                    accessToken: user.accessToken,
                 });
             })
             .catch((error) => {
                 const errorCode = error.code; 
                 const errorMessage = error.message;
                 console.warn({error, errorCode, errorMessage});
+                setErrors(errorMessage);
+                <p>{errors}</p>
             })
+
         console.log(email, password);
-    }, [setIsLoggedIn, setUserInformation]);
+    }, [setIsLoggedIn, setUserInformation, errors]);
     
     
     return (
@@ -44,7 +49,9 @@ function LoginPage({ isLoggedIn, setIsLoggedIn, setUserInformation }) {
                 setUserInformation={setUserInformation}
             />
             <h1>Login Page</h1>
-            <LoginForm loginUser={loginUser}/>
+            <LoginForm 
+                loginUser={loginUser}
+            />
         </div>
     );
 }

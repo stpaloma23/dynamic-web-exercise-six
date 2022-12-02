@@ -4,8 +4,10 @@ function CreateUserForm({signUpUser}) {
     return (
         <form className="form-element" onSubmit={(e) => signUpUser(e)}>
             <label htmlFor="email">Email</label>
-            <input type="text" name="userName"/>
-            <input htmlForm=""/>
+            <input type="email" name="email"/>
+            <label htmlFor="password">Password</label>
+            <input type="password" name="password"/>
+            
             <button type="submit">Submit</button>
         </form>
     );
