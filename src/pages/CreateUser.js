@@ -10,7 +10,7 @@ function CreateUserProfile({isLoggedIn, setIsLoggedIn, setUserInformation}) {
     // if youre logged in go to the user profile 
     useEffect(() => {
         if(isLoggedIn) navigate('/')
-    }, [isLoggedIn]);
+    }, [isLoggedIn, navigate]);
     const signUpUser = useCallback(
         (e) => {
             e.preventDefault();
