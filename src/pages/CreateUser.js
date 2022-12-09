@@ -15,7 +15,9 @@ function CreateUserProfile({isLoggedIn, setIsLoggedIn, setUserInformation}) {
         (e) => {
             e.preventDefault();
             const email = e.currentTarget.email.value;
-            const password = e.currentTarget.email.value;
+            const password = e.currentTarget.password.value;
+            const displayName = e.currentTarget.displayName.value;
+
             const auth = getAuth()
 
             createUserWithEmailAndPassword(auth, email, password)
@@ -25,7 +27,7 @@ function CreateUserProfile({isLoggedIn, setIsLoggedIn, setUserInformation}) {
                     setIsLoggedIn(true);
                     setUserInformation({
                         email: user.email,
-                        displayName: user.displayName,
+                        displayName: displayName,
                         uid: user.uid,
                         accessToken: user.accessToken,
                     });
